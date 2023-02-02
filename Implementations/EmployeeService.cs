@@ -2,6 +2,7 @@
 using MGQSEmployeeAppMVC.Entities;
 using MGQSEmployeeAppMVC.Interfaces;
 using MGQSEmployeeAppMVC.Response;
+using MGQSEmployeeAppMVC.Shared;
 
 namespace MGQSEmployeeAppMVC.Implementations
 {
