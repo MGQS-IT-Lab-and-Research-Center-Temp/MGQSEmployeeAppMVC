@@ -93,13 +93,28 @@ namespace MGQSEmployeeAppMVC.Implementations
                     Role = newemployee.Role,
                 },
                 Message = "Employee Successfully created",
-                Status = false
+                Status = true
             };
         }
 
         public EmployeeResponseModel Delete(int id)
         {
-            throw new NotImplementedException();
+            var employee = _employeerepository.GetById(id);
+            if (employee == null)
+            {
+                return new EmployeeResponseModel
+                {
+                    Message = "Employee does not exist",
+                    Status = false
+                };
+            }
+            _employeerepository.Delete(id);
+            return new EmployeeResponseModel()
+            {
+                Message =  "Employee Succesfully deleted",
+                Status = true
+
+            };
         }
 
         public EmployeesResponseModel GetAll()
