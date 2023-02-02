@@ -61,8 +61,9 @@ namespace MGQSEmployeeAppMVC.Implementations
             return employee;
         }
 
-        public Employee Update(Employee employee)
+        public Employee Update(int id)
         {
+            var employee = GetById(id);
             _context.Employee.Update(employee);
             _context.SaveChanges();
             return employee;

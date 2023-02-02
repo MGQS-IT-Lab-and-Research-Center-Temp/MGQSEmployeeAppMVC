@@ -9,7 +9,7 @@ namespace MGQSEmployeeAppMVC.Interfaces
         List<Employee> GetAll();
         Employee CreateRecord(Employee employee);
         bool Delete(int id);
-        Employee Update(Employee employee);
+        Employee Update(int id);
         Employee Login(string code,string password);
     }
 }

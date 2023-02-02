@@ -159,7 +159,7 @@ namespace MGQSEmployeeAppMVC.Implementations
         public EmployeeResponseModel Login(string code, string password)
         {
             var employee = _employeerepository.Login(code, password);
-            if (employee == null )
+            if (employee == null)
             {
                 return new EmployeeResponseModel()
                 {
@@ -193,20 +193,19 @@ namespace MGQSEmployeeAppMVC.Implementations
                     Status = true
                 };
             }
+            employee.FirstName = updateEmployeeDto.FirstName;
+            employee.LastName = updateEmployeeDto.LastName;
+            employee.MiddleName = updateEmployeeDto.MiddleName;
+            employee.Phone = updateEmployeeDto.Phone;
+            employee.Email = updateEmployeeDto.Email;
+            employee.Role = updateEmployeeDto.Role;
+            employee.Gender = updateEmployeeDto.Gender;
+
             _employeerepository.Update(id);
             return new EmployeeResponseModel()
             {
-                Data = new()
-                {
-                    FirstName = updateEmployeeDto.FirstName,
-                    LastName = updateEmployeeDto.LastName,
-                    MiddleName = updateEmployeeDto.LastName,
-                    Phone = updateEmployeeDto.Phone,
-                    Email = updateEmployeeDto.Email  
-                },
                 Message = "Employee Updated",
                 Status = false
-
             };
         }
     }

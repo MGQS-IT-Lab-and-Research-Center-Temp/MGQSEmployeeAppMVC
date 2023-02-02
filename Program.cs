@@ -1,3 +1,8 @@
+using MGQSEmployeeAppMVC.Context;
+using MGQSEmployeeAppMVC.Implementations;
+using MGQSEmployeeAppMVC.Interfaces;
+using Microsoft.EntityFrameworkCore;
+
 namespace MGQSEmployeeAppMVC
 {
     public class Program
@@ -10,6 +15,9 @@ namespace MGQSEmployeeAppMVC
             builder.Services.AddControllersWithViews();
 
             var app = builder.Build();
+            builder.Services.AddDbContext<ApplicationContext>(option => option.UseMySQL(builder.Configuration.GetConnectionString("ApplicationContext")));
+                  builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
+                   builder.Services.AddScoped<IEmployeeService,EmployeeService>();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
