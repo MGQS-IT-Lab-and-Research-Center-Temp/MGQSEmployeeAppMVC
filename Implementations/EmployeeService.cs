@@ -54,7 +54,47 @@ namespace MGQSEmployeeAppMVC.Implementations
 
         public EmployeeResponseModel Create(EmployeeDto request)
         {
-            throw new NotImplementedException();
+            var employees = _employeerepository.GetAll();
+            int id = (employees.Count != 0) ? employees[employees.Count - 1].Id + 1 : 1;
+            var employee = _employeerepository.GetById(id);
+            var code = Helper.GenerateCode(id);
+            if(employee == null)
+            {
+                return new EmployeeResponseModel()
+                {
+                    Message = "Employee Already Exist",
+                    Status = false
+                };
+            }
+            Employee newemployee = new()
+            {
+                Id = id,
+                Code = code,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+                MiddleName = request.LastName,
+                Email = request.Email,
+                Phone = request.Phone,
+                Gender = request.Gender,
+                Role = request.Role,
+                Password = request.Password
+            };
+            _employeerepository.CreateRecord(newemployee);
+            return new EmployeeResponseModel
+            {
+                Data = new EmployeeDto
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    MiddleName = request.LastName,
+                    Email = request.Email,
+                    Phone = request.Phone,
+                    Gender = request.Gender,
+                    Role = request.Role,
+                },
+                Message = "Employee Successfully created",
+                Status=  false;
+            }
         }
 
         public EmployeeResponseModel Delete(int id)
