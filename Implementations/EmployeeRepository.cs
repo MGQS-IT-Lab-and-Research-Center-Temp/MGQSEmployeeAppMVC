@@ -21,27 +21,45 @@ namespace MGQSEmployeeAppMVC.Implementations
 
         public bool Delete(int id)
         {
-            throw new NotImplementedException();
+            var employee = GetById(id);
+            _context.Employee.Remove(employee);
+            _context.SaveChanges();
+            return true;
         }
 
         public List<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            var employee = _context.Employee.Select(emp => new Employee
+            {
+                FirstName = emp.FirstName,
+                LastName = emp.LastName,
+                MiddleName = emp.MiddleName,
+                Gender = emp.Gender,
+                Role= emp.Role,
+                Phone = emp.Phone,
+                Email = emp.Email,
+
+            }).ToList();
+            return employee;
         }
 
         public Employee GetByCode(string code)
         {
-            throw new NotImplementedException();
+            var employee = _context.Employee.FirstOrDefault(emp => emp.Code == code);
+            return employee;
         }
-
         public Employee GetById(int id)
         {
-            throw new NotImplementedException();
+
+            var employee = _context.Employee.FirstOrDefault(emp => emp.Id == id);
+            return employee;
         }
 
         public Employee Update(Employee employee)
         {
-            throw new NotImplementedException();
+            _context.Employee.Update(employee);
+            _context.SaveChanges();
+            return employee;
         }
     }
 }
