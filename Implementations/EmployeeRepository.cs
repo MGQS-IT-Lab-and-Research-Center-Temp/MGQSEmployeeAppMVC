@@ -35,7 +35,7 @@ namespace MGQSEmployeeAppMVC.Implementations
                 LastName = emp.LastName,
                 MiddleName = emp.MiddleName,
                 Gender = emp.Gender,
-                Role= emp.Role,
+                Role = emp.Role,
                 Phone = emp.Phone,
                 Email = emp.Email,
 
@@ -52,6 +52,12 @@ namespace MGQSEmployeeAppMVC.Implementations
         {
 
             var employee = _context.Employee.FirstOrDefault(emp => emp.Id == id);
+            return employee;
+        }
+
+        public Employee Login(string code, string password)
+        {
+            var employee = _context.Employee.FirstOrDefault(emp => emp.Code == code && emp.Password == password);
             return employee;
         }
 

@@ -9,7 +9,7 @@ namespace MGQSEmployeeAppMVC.Implementations
     public class EmployeeService : IEmployeeService
     {
         private readonly IEmployeeRepository _employeerepository;
-        public EmployeeService(IEmployeeRepository employeerepository) 
+        public EmployeeService(IEmployeeRepository employeerepository)
         {
             _employeerepository = employeerepository;
         }
@@ -19,11 +19,11 @@ namespace MGQSEmployeeAppMVC.Implementations
             var employee = _employeerepository.GetByCode(code);
             if (employee == null)
             {
-                 return new EmployeeResponseModel()
-                 {
-                     Message = "Employee Does not exist",
-                     Status = false
-                 };
+                return new EmployeeResponseModel()
+                {
+                    Message = "Employee Does not exist",
+                    Status = false
+                };
             }
             if (employee.Password == oldPassword)
             {
@@ -33,7 +33,7 @@ namespace MGQSEmployeeAppMVC.Implementations
                     Status = false
                 };
             }
-            if(newPassword == confirmPassword)
+            if (newPassword == confirmPassword)
             {
                 return new EmployeeResponseModel
                 {
@@ -58,7 +58,7 @@ namespace MGQSEmployeeAppMVC.Implementations
             int id = (employees.Count != 0) ? employees[employees.Count - 1].Id + 1 : 1;
             var employee = _employeerepository.GetById(id);
             var code = Helper.GenerateCode(id);
-            if(employee == null)
+            if (employee == null)
             {
                 return new EmployeeResponseModel()
                 {
@@ -111,7 +111,7 @@ namespace MGQSEmployeeAppMVC.Implementations
             _employeerepository.Delete(id);
             return new EmployeeResponseModel()
             {
-                Message =  "Employee Succesfully deleted",
+                Message = "Employee Succesfully deleted",
                 Status = true
 
             };
@@ -119,32 +119,95 @@ namespace MGQSEmployeeAppMVC.Implementations
 
         public EmployeesResponseModel GetAll()
         {
-            throw new NotImplementedException();
+            var emploees = _employeerepository.GetAll();
+            return new EmployeesResponseModel
+            {
+                AllEmployees = emploees,
+                Message = "List Of Employees",
+                Status = true
+            };
         }
 
         public EmployeeResponseModel GetAnEmployee(int id)
         {
-            throw new NotImplementedException();
+            var employee = _employeerepository.GetById(id);
+            if (employee == null)
+            {
+                return new EmployeeResponseModel
+                {
+                    Message = "Employee Does not exist",
+                    Status = false
+                };
+            }
+            return new EmployeeResponseModel
+            {
+                Data = new EmployeeDto
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    MiddleName = employee.LastName,
+                    Phone = employee.Phone,
+                    Email = employee.Email,
+                    Role = employee.Role,
+                    Gender = employee.Gender
+                },
+                Message = "Data Of employee",
+                Status = true
+            };
         }
 
-        public Employee Login(string code, string password)
+        public EmployeeResponseModel Login(string code, string password)
         {
-            throw new NotImplementedException();
+            var employee = _employeerepository.Login(code, password);
+            if (employee == null )
+            {
+                return new EmployeeResponseModel()
+                {
+                    Message = "Employee does not exist",
+                    Status = false
+                };
+            }
+            return new EmployeeResponseModel
+            {
+                Data = new()
+                {
+                    FirstName = employee.FirstName,
+                    LastName = employee.LastName,
+                    MiddleName = employee.LastName,
+                    Phone = employee.Phone,
+                    Email = employee.Email,
+                    Role = employee.Role,
+                    Gender = employee.Gender
+                },
+                Status = true
+            };
         }
-
-        public EmployeeResponseModel PrintDetailView(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
-        public EmployeeResponseModel PrintListView(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
         public EmployeeResponseModel Update(int id, UpdateEmployeeDto updateEmployeeDto)
         {
-            throw new NotImplementedException();
+            var employee = _employeerepository.GetById(id);
+            if (employee == null)
+            {
+                return new EmployeeResponseModel()
+                {
+                    Message = "Employee does not exist",
+                    Status = true
+                };
+            }
+            _employeerepository.Update(id);
+            return new EmployeeResponseModel()
+            {
+                Data = new()
+                {
+                    FirstName = updateEmployeeDto.FirstName,
+                    LastName = updateEmployeeDto.LastName,
+                    MiddleName = updateEmployeeDto.LastName,
+                    Phone = updateEmployeeDto.Phone,
+                    Email = updateEmployeeDto.Email  
+                },
+                Message = "Employee Updated",
+                Status = false
+
+            };
         }
     }
 }
