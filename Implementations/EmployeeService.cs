@@ -84,17 +84,17 @@ namespace MGQSEmployeeAppMVC.Implementations
             {
                 Data = new EmployeeDto
                 {
-                    FirstName = request.FirstName,
-                    LastName = request.LastName,
-                    MiddleName = request.LastName,
-                    Email = request.Email,
-                    Phone = request.Phone,
-                    Gender = request.Gender,
-                    Role = request.Role,
+                    FirstName = newemployee.FirstName,
+                    LastName = newemployee.LastName,
+                    MiddleName = newemployee.LastName,
+                    Email = newemployee.Email,
+                    Phone = newemployee.Phone,
+                    Gender = newemployee.Gender,
+                    Role = newemployee.Role,
                 },
                 Message = "Employee Successfully created",
-                Status=  false;
-            }
+                Status = false
+            };
         }
 
         public EmployeeResponseModel Delete(int id)
