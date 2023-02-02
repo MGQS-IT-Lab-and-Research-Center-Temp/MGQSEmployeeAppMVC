@@ -1,6 +1,6 @@
 ﻿namespace MGQSEmployeeAppMVC.Response
 {
-    public class EmployeeResponseModel
+    public class EmployeeResponseModel : BaseResponseModel
     {
     }
 }

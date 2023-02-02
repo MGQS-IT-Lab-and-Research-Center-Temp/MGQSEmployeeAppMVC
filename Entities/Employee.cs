@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using MGQSEmployeeAppMVC.Enums;
+using System.Data;
 using System.Reflection;
 
 namespace MGQSEmployeeAppMVC.Entities
