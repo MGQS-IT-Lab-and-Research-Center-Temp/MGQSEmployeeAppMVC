@@ -188,6 +188,13 @@ namespace MGQSEmployeeAppMVC.Implementations
                     Status = false
                 };
             }
+            if(employee.Id == 1)
+            {
+                return new EmployeeResponseModel
+                {
+                    Message = "Cannot Update employee"
+                };
+            }
             employee.FirstName = updateEmployeeDto.FirstName;
             employee.LastName = updateEmployeeDto.LastName;
             employee.MiddleName = updateEmployeeDto.MiddleName;
