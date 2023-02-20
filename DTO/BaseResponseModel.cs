@@ -1,4 +1,4 @@
-﻿namespace MGQSEmployeeAppMVC.Response
+﻿namespace MGQSEmployeeAppMVC.DTO
 {
     public class BaseResponseModel
     {

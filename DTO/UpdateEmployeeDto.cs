@@ -4,7 +4,7 @@ namespace MGQSEmployeeAppMVC.DTO
 {
     public class UpdateEmployeeDto
     {
-        public int Id { get; set; }
+        public int EmpId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }

@@ -13,11 +13,11 @@ namespace MGQSEmployeeAppMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            var app = builder.Build();
             builder.Services.AddDbContext<ApplicationContext>(option => option.UseMySQL(builder.Configuration.GetConnectionString("ApplicationContext")));
-                  builder.Services.AddScoped<IEmployeeRepository,EmployeeRepository>();
-                   builder.Services.AddScoped<IEmployeeService,EmployeeService>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+            var app = builder.Build();
+           
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -32,7 +32,7 @@ namespace MGQSEmployeeAppMVC
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Admin}/{action=Login}/{id?}");
 
             app.Run();
         }

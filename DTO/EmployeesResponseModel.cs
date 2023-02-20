@@ -1,9 +1,9 @@
 ﻿using MGQSEmployeeAppMVC.Entities;
 
-namespace MGQSEmployeeAppMVC.Response
+namespace MGQSEmployeeAppMVC.DTO
 {
     public class EmployeesResponseModel : BaseResponseModel
     {
-        public List<Employee> AllEmployees
+        public List<Employee> AllEmployees { get; set; }
     }
 }

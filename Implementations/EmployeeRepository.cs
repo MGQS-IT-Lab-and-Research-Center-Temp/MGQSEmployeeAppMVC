@@ -31,6 +31,8 @@ namespace MGQSEmployeeAppMVC.Implementations
         {
             var employee = _context.Employee.Select(emp => new Employee
             {
+                Id = emp.Id,
+                Code = emp.Code,
                 FirstName = emp.FirstName,
                 LastName = emp.LastName,
                 MiddleName = emp.MiddleName,
@@ -38,7 +40,6 @@ namespace MGQSEmployeeAppMVC.Implementations
                 Role = emp.Role,
                 Phone = emp.Phone,
                 Email = emp.Email,
-
             }).ToList();
             return employee;
         }

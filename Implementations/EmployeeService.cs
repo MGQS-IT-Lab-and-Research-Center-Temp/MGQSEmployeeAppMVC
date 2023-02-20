@@ -1,7 +1,7 @@
 ﻿using MGQSEmployeeAppMVC.DTO;
 using MGQSEmployeeAppMVC.Entities;
+using MGQSEmployeeAppMVC.Enums;
 using MGQSEmployeeAppMVC.Interfaces;
-using MGQSEmployeeAppMVC.Response;
 using MGQSEmployeeAppMVC.Shared;
 
 namespace MGQSEmployeeAppMVC.Implementations
@@ -56,9 +56,9 @@ namespace MGQSEmployeeAppMVC.Implementations
         {
             var employees = _employeerepository.GetAll();
             int id = (employees.Count != 0) ? employees[employees.Count - 1].Id + 1 : 1;
-            var employee = _employeerepository.GetById(id);
-            var code = Helper.GenerateCode(id);
-            if (employee == null)
+            var employee = _employeerepository.GetById(request.EmpId);
+           string code = Helper.GenerateCode(id);
+            if (employee != null)
             {
                 return new EmployeeResponseModel()
                 {
@@ -72,7 +72,7 @@ namespace MGQSEmployeeAppMVC.Implementations
                 Code = code,
                 FirstName = request.FirstName,
                 LastName = request.LastName,
-                MiddleName = request.LastName,
+                MiddleName = request.MiddleName,
                 Email = request.Email,
                 Phone = request.Phone,
                 Gender = request.Gender,
@@ -84,13 +84,16 @@ namespace MGQSEmployeeAppMVC.Implementations
             {
                 Data = new EmployeeDto
                 {
+                    EmpId = newemployee.Id,
+                    EmpCode = newemployee.Code,
                     FirstName = newemployee.FirstName,
                     LastName = newemployee.LastName,
-                    MiddleName = newemployee.LastName,
+                    MiddleName = newemployee.MiddleName,
                     Email = newemployee.Email,
                     Phone = newemployee.Phone,
                     Gender = newemployee.Gender,
                     Role = newemployee.Role,
+                    Password = newemployee.Password
                 },
                 Message = "Employee Successfully created",
                 Status = true
@@ -119,10 +122,10 @@ namespace MGQSEmployeeAppMVC.Implementations
 
         public EmployeesResponseModel GetAll()
         {
-            var emploees = _employeerepository.GetAll();
+            var employees = _employeerepository.GetAll();
             return new EmployeesResponseModel
             {
-                AllEmployees = emploees,
+                AllEmployees = employees,
                 Message = "List Of Employees",
                 Status = true
             };
@@ -143,9 +146,10 @@ namespace MGQSEmployeeAppMVC.Implementations
             {
                 Data = new EmployeeDto
                 {
+                    EmpId = employee.Id,
                     FirstName = employee.FirstName,
                     LastName = employee.LastName,
-                    MiddleName = employee.LastName,
+                    MiddleName = employee.MiddleName,
                     Phone = employee.Phone,
                     Email = employee.Email,
                     Role = employee.Role,
@@ -169,16 +173,7 @@ namespace MGQSEmployeeAppMVC.Implementations
             }
             return new EmployeeResponseModel
             {
-                Data = new()
-                {
-                    FirstName = employee.FirstName,
-                    LastName = employee.LastName,
-                    MiddleName = employee.LastName,
-                    Phone = employee.Phone,
-                    Email = employee.Email,
-                    Role = employee.Role,
-                    Gender = employee.Gender
-                },
+                Message = "Login Successful",
                 Status = true
             };
         }
@@ -190,7 +185,7 @@ namespace MGQSEmployeeAppMVC.Implementations
                 return new EmployeeResponseModel()
                 {
                     Message = "Employee does not exist",
-                    Status = true
+                    Status = false
                 };
             }
             employee.FirstName = updateEmployeeDto.FirstName;
@@ -200,12 +195,11 @@ namespace MGQSEmployeeAppMVC.Implementations
             employee.Email = updateEmployeeDto.Email;
             employee.Role = updateEmployeeDto.Role;
             employee.Gender = updateEmployeeDto.Gender;
-
             _employeerepository.Update(id);
             return new EmployeeResponseModel()
             {
                 Message = "Employee Updated",
-                Status = false
+                Status = true
             };
         }
     }

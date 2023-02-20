@@ -1,6 +1,5 @@
 ﻿using MGQSEmployeeAppMVC.DTO;
 using MGQSEmployeeAppMVC.Entities;
-using MGQSEmployeeAppMVC.Response;
 
 namespace MGQSEmployeeAppMVC.Interfaces
 {
