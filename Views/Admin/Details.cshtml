@@ -1,0 +1,27 @@
+﻿@model MGQSEmployeeAppMVC.DTO.EmployeeDto
+<div>
+    <table class="table table-bordered table-success table-striped">
+        <thead>
+            <tr>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>MiddleName</td>
+                <td>Email</td>
+                <td>Phone</td>
+                <td>Gender</td>
+                <td>Role</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.FirstName</td>
+                <td>@Model.LastName</td>
+                <td>@Model.MiddleName</td>
+                <td>@Model.Email</td>
+                <td>@Model.Phone</td>
+                <td>@Model.Gender</td>
+                <td>@Model.Role</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

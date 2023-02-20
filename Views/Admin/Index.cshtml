@@ -1,0 +1,33 @@
+﻿@model IEnumerable<MGQSEmployeeAppMVC.Entities.Employee>
+<div class="row">
+<div class="col-md-8">
+    <table class="table table-primary table-striped">
+        <thead>
+            <tr>
+                <td>Id</td>
+                <td>FirstName</td>
+                <td>LastName</td>
+                <td>Details</td>
+                <td>Update</td>
+                <td>Delete</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model)
+            {
+                <tr>
+                    <td>@employee.Id</td>
+                    <td>@employee.FirstName</td>
+                    <td>@employee.LastName</td>
+                    <td><a asp-controller="Admin" asp-action="Details" asp-route-id="@employee.Id">View Details</a></td>
+                    <td><a asp-controller="Admin" asp-action="EditEmployee" asp-route-id="@employee.Id">Update</a></td>
+                    <td><a asp-controller="Admin" asp-action="DeleteEmployee" asp-route-id="@employee.Id">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <span>
+        <a asp-action="Create">Create Employee</a>
+    </span>
+</div>
+</div>

@@ -1,0 +1,30 @@
+﻿@model MGQSEmployeeAppMVC.DTO.EmployeeDto
+<div>
+    <dl>
+        <dd>
+           LastName
+        </dd>
+        <dt>
+            @Model.LastName
+        </dt>
+        <dd>
+            Name
+        </dd>
+        <dt>
+            @Model.FirstName
+        </dt>
+        <dd>
+            MiddleName
+        </dd>
+        <dt>
+            @Model.MiddleName
+        </dt>
+    </dl>
+</div>
+<form asp-action="Edit" method="get" asp-route-id="@Model.EmpId">
+    <button>Yes</button>
+</form>
+<br />
+<form asp-action="Index">
+    <button>No</button>
+</form>

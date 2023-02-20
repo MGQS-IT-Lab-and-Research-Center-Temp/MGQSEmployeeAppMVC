@@ -1,0 +1,33 @@
+﻿@model MGQSEmployeeAppMVC.DTO.EmployeeDto
+<div>
+    <dl>
+        <dd>
+            Id
+        </dd>
+        <dt>
+            @Model.EmpId
+        </dt>
+        <dd>
+            FirstName
+        </dd>
+        <dt>
+            @Model.FirstName
+        </dt>
+        <dd>
+            LastName
+        </dd>
+        <dt>
+            @Model.LastName
+        </dt>
+    </dl>
+</div>
+<span>Are you sure you want to Delete this Employee?</span>
+<form asp-action="Delete" method="post" asp-route-id="@Model.EmpId">
+    <button>Yes</button>
+</form>
+<br />
+<form asp-action="Index">
+    <button>No</button>
+</form>
+
+

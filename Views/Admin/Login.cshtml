@@ -1,0 +1,21 @@
+﻿@model MGQSEmployeeAppMVC.Entities.Employee
+
+
+<div class="text text-center" style="align-content: center">
+    <h1>
+        Login
+    </h1>
+    <form asp-action="Login" class="text text-center" style="align-content: center">
+        <div class="text text-center" style="align-content: center">
+            <label>Code</label>
+            <input type="text" name="Code" asp-for="Code" required />
+        </div>
+        <div class="text text-center" style="align-content: center">
+            <label>Password</label>
+            <input type="password" name="Password" required />
+        </div>
+        <div class="text text-center" style="align-content: center">
+            <input type="submit" value="Login" class="btn btn-danger" />
+        </div>
+    </form>
+</div>
